@@ -1,5 +1,6 @@
 # RepositorioTemplate
 Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
+As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
 
 **!! *Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(Paradigma)_(NomeDoProjeto)*. !!** 
 
@@ -10,9 +11,9 @@ Paradigmas:
 
 **!! *Não coloque os nomes dos alunos no título do repositório*. !!**
 
-**!! *Exemplo de título correto: 2021.2_G1_Logico_ProjetoRoteirosAereos*. !!**
+**!! *Exemplo de título correto: 2022.1_G1_Logico_ProjetoRoteirosAereos*. !!**
  
- (Apague essa seção)
+ (Apague esses comentários)
 
 # NomeDoProjeto
 
@@ -28,6 +29,7 @@ Paradigmas:
 
 ## Sobre 
 Descreva o seu projeto em linhas gerais. 
+Use referências, links, que permitam conhecer um pouco mais sobre o projeto.
 
 ## Screenshots
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
@@ -37,15 +39,36 @@ Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcioname
 **Tecnologias**: xxxxxx<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
+Gifs animados e outras ilustrações são bem-vindos!
 
 ## Uso 
-Explique como usar seu projeto, caso haja algum passo a passo após o comando de execução.
+Explique como usar seu projeto.
+Procure ilustrar em passos, com apoio de telas do software.
 
 ## Vídeo
 Adicione 1 ou mais vídeos com a execução do projeto.
+Procure: 
+Introduzir o projeto;
+Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe.
+Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias.
+Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
+OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
+TEMPO: +/- 15min
+
+## Participações
+Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
+Nome do Membro -> Contribuição -> Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula)
+No Paradigma Funcional: ex. Fulano -> Programação da Função removeDaLista -> Regular
+No Paradigma Lógico: ex. Fulano -> Programação dos Fatos da Base de Conhecimento Lógica -> Boa
+No Paradigma SMA: ex. Fulano -> Programação do Agente Vendedor -> Excelente
 
 ## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas a seguir.
+Quaisquer outras informações sobre o projeto podem ser descritas aqui.
+Lições Aprendidas
+Percepções
+Contribuições e Fragilidades
+Trabalhos Futuros
 
 ## Fontes
-Caso utilize materiais de terceiros, referencie-os adequadamente.
+Referencie, adequadamente, as referências utilizadas.
+Indique ainda, fontes de leitura complementares.
