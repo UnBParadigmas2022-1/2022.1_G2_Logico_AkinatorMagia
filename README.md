@@ -48,10 +48,10 @@ Procure ilustrar em passos, com apoio de telas do software.
 ## Vídeo
 Adicione 1 ou mais vídeos com a execução do projeto.
 Procure: 
-Introduzir o projeto;
-Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe.
-Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias.
-Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
+(i) Introduzir o projeto;
+(ii) Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe;
+(iii) Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias, e
+(iV) Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
 OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
 TEMPO: +/- 15min
 
@@ -63,10 +63,10 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui.
-Lições Aprendidas
-Percepções
-Contribuições e Fragilidades
-Trabalhos Futuros
+(i) Lições Aprendidas;
+(ii) Percepções;
+(iii) Contribuições e Fragilidades, e
+(iV) Trabalhos Futuros.
 
 ## Fontes
 Referencie, adequadamente, as referências utilizadas.
