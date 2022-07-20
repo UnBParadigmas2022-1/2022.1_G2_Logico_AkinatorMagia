@@ -1,13 +1,48 @@
-% use_module(library(lists))
+:- initialization(play).
+:- style_check(-singleton).
+:- use_module(library(lists)).
+:- use_module(library(random)).
+:- dynamic game/2.
 
-membro(X, [X|_]).
-membro(X, [_|T]) :- membro(X,T).
+magica(X, [H|T]) :-
+    member(X, H),
+    magica(X, T), !.
+magica(X, []).
 
-escolha(X, [H|T]) :-
-    write(H), nl,
-    membro(X, H),
-    escolha(X, T), !.
-escolha(X, []).
+table(I, [H|T]) :- 
+    write(I = H), nl,
+    R is I+1,
+    table(R, T).
+table(_, []).
 
-% [k, q, j, a, 2, 3, 4, 5, 6]
-% [[k, q, j], [q, j, a], [k, a, q]]
+play :- 
+    writeln("Vou advinhar sua carta!"), nl,
+    game(['K♠', 'Q♣', 'J♦', 'A♥', '2♠', '3♣', '4♦', '5♥', '6♠', '7♣', '8♦', '9♥'], []), !.
+
+verifica(Escolha) :- 
+    length(Escolha, LE), LE > 1,
+    findall(X, magica(X, Escolha), L),
+    length(L, N), N == 1,
+    magica(Z, Escolha),
+    % talvez aqui retirar o item Z de Escolha e chamar verifica para ver se tem outros itens, se encontrar da false
+    write(Escolha), nl,
+    write(L), nl,
+    write('Sua carta é a '), write(Z), write('!'), nl.
+
+game(Baralho, Escolhas) :- 
+    writeln("Escolha um conjunto de deque"), nl,
+    separa(Baralho, Baralhos),
+    table(0, Baralhos),
+    read(Escolha), 
+    nth0(Escolha, Baralhos, Deque),
+    append([Deque], Escolhas, NovasEscolhas),
+
+    (verifica(NovasEscolhas);
+    game(Baralho, NovasEscolhas)).
+
+separa(Baralho, Baralhos) :- 
+    random_permutation(Baralho, Embaralhado),
+    append(A, B, Embaralhado),
+    length(A, N),
+    length(B, N),
+    Baralhos = [A,B].

@@ -11,6 +11,6 @@ menu:-  repeat,
 
 option(0):- !.
 option(1):- write('Abrindo truque de mágica...'), nl,
-    consult(truque/magica.pl), !.
+    consult(truque/magica), !.
 option(2):- write('Abrindo akinator...'), nl, !.
 option(_):- write('Não é uma opção válida'), nl, !.
