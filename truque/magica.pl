@@ -6,7 +6,7 @@
 
 magica(X, [H|T]) :-
     member(X, H),
-    magica(X, T), !.
+    magica(X, T).
 magica(X, []).
 
 table(I, [H|T]) :- 
