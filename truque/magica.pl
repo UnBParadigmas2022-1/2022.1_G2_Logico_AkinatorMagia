@@ -24,7 +24,6 @@ verifica(Escolha) :-
     findall(X, magica(X, Escolha), L),
     length(L, N), N == 1,
     magica(Z, Escolha),
-    % talvez aqui retirar o item Z de Escolha e chamar verifica para ver se tem outros itens, se encontrar da false
     write(Escolha), nl,
     write(L), nl,
     write('Sua carta é a '), write(Z), write('!'), nl.
