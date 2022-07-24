@@ -24,12 +24,10 @@ verifica(Escolha) :-
     findall(X, magica(X, Escolha), L),
     length(L, N), N == 1,
     magica(Z, Escolha),
-    write(Escolha), nl,
-    write(L), nl,
     write('Sua carta é a '), write(Z), write('!'), nl.
 
 game(Baralho, Escolhas) :- 
-    writeln("Escolha um conjunto de deque"), nl,
+    writeln("Escolha uma carta e fale em qual conjunto de deque ela está"), nl,
     separa(Baralho, Baralhos),
     table(0, Baralhos),
     read(Escolha), 
