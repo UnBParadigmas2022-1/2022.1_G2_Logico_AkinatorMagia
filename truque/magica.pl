@@ -29,13 +29,20 @@ verifica(Escolha) :-
 game(Baralho, Escolhas) :- 
     writeln("Escolha uma carta e fale em qual conjunto de deque ela está"), nl,
     separa(Baralho, Baralhos),
-    table(0, Baralhos),
+    table(1, Baralhos),
     read(Escolha), 
-    nth0(Escolha, Baralhos, Deque),
-    append([Deque], Escolhas, NovasEscolhas),
-
-    (verifica(NovasEscolhas);
-    game(Baralho, NovasEscolhas)).
+    (
+      length(Baralhos, LB), LB >= Escolha, % verifica se esta entre as opções
+      Index is Escolha-1, % equivale ao index da lista
+      nth0(Index, Baralhos, Deque),
+      append([Deque], Escolhas, NovasEscolhas),
+        (
+          verifica(NovasEscolhas); % verifica se ele já sabe a carta
+      	  game(Baralho, NovasEscolhas)
+        )
+    );
+    writeln("Você deve escolher um número de deque válido."), nl,
+    game(Baralho, Escolhas).
 
 separa(Baralho, Baralhos) :- 
     random_permutation(Baralho, Embaralhado),
