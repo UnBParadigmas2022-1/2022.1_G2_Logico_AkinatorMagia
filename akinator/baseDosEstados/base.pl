@@ -193,3 +193,42 @@ santaCatarina tem indiceAlfabetizacao=97.2.
 sergipe tem indiceAlfabetizacao=85.3.
 saoPaulo tem indiceAlfabetizacao=97.2.
 tocantins tem indiceAlfabetizacao=89.6.
+
+acre tem nome = 'Acre'. 
+alagoas tem nome = 'Alagoas'.
+amapa tem nome = 'Amapa'.
+amazonas tem nome = 'Amazonas'.
+bahia tem nome = 'Bahia'.
+ceara tem nome = 'Ceara'.
+distritoFederal tem nome = 'Distrito Federal'.
+espiritoSanto tem nome = 'Espírito Santo'.
+goias tem nome = 'Goiás'.
+maranhao tem nome = 'Maranhão'.
+matoGrosso tem nome = 'Mato Grosso'.
+matoGrossoDoSul tem nome = 'Mato Grosso do Sul'.
+minasGerais tem nome = 'Minas Gerais'.
+parana tem nome = 'Paraná'.
+paraiba tem nome = 'Paraíba'.
+para tem nome = 'Pará'.
+pernambuco tem nome = 'Pernambuco'.
+piaui tem nome = 'Piauí'.
+rioDeJaneiro tem nome = 'Rio de Janeiro'.
+rioGrandeDoNorte tem nome = 'Rio Grande do Norte'.
+rioGrandeDoSul tem nome = 'Rio Grande do Sul'.
+rondonia tem nome = 'Rondônia'.
+roraima tem nome = 'Roraima'.
+santaCatarina tem nome = 'Santa Catarina'.
+sergipe tem nome = 'Sergipe'.
+saoPaulo tem nome = 'São Paulo'.
+tocantins tem nome = 'Tocantins'.
+
+'Distrito Federal' eh composto.
+'Espírito Santo' eh composto.
+'Mato Grosso' eh composto.
+'Mato Grosso do Sul' eh composto.
+'Minas Gerais' eh composto.
+'Rio de Janeiro' eh composto.
+'Rio Grande do Norte' eh composto.
+'Rio Grande do Sul' eh composto.
+'Santa Catarina' eh composto.
+'São Paulo' eh composto.
