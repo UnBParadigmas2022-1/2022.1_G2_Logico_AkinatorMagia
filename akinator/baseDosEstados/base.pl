@@ -1,3 +1,5 @@
+X tem Atributo=Valor:-X ehUm C, C tem Atributo=Valor.
+
 acre tem regiao=norte.
 alagoas tem regiao=nordeste.
 amapa tem regiao=norte.
