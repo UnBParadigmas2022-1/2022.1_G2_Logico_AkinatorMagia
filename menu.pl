@@ -1,12 +1,14 @@
 :- initialization(menu).
+:- use_module(library(pce)).
+
 menu:-  repeat,
-	write('=== MENU ==='), nl,
-	write('1. Truque de magica'), nl,
-	write('2. Akinator'), nl,
-	write('0. Sair'), nl,
-	read(X),
-	option(X),
-	X==0,
+	new(W, window('Menu')),
+	send(W, size, size(500, 600)),
+	new(T,text('Escolha seu jogo')),
+	send(W, display, T, point(200, 200)),
+	send(W, display, button('Truque de mágica', message(@prolog, option, 1)), point(193,300)),
+	send(W, display, button('Akinator', message(@prolog, option, 2)), point(215,350)),
+    send(W, open),
 	!.
 
 option(0):- !.
