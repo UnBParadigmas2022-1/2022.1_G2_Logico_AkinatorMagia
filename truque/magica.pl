@@ -3,6 +3,7 @@
 :- use_module(library(lists)).
 :- use_module(library(random)).
 :- dynamic game/2.
+:- use_module(library(pce)).
 
 magica(X, [H|T]) :-
     member(X, H),
