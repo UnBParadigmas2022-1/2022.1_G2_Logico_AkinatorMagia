@@ -1,4 +1,4 @@
-:- initialization(play).
+:- initialization(cria_tela).
 :- style_check(-singleton).
 :- use_module(library(lists)).
 :- use_module(library(random)).
@@ -10,15 +10,19 @@ magica(X, [H|T]) :-
     magica(X, T).
 magica(X, []).
 
-table(I, [H|T]) :- 
-    write(I = H), nl,
+table(W, I, [H|T]) :- 
+    format(atom(S), '~w', (I=H)),
+    new(F1, font(screen, roman, 15)),
+    new(T1, text(S)),
+	send(T1, font(F1)),
+    send(W, append, T1),
     R is I+1,
-    table(R, T).
-table(_, []).
+    table(W, R, T).
+table(_, _, []).
 
-play :- 
-    writeln("Vou advinhar sua carta!"), nl,
-    game(['K♠', 'Q♣', 'J♦', 'A♥', '2♠', '3♣', '4♦', '5♥', '6♠', '7♣', '8♦', '9♥'], []), !.
+play(W) :- 
+    writeln("Vou advinhar sua carta!"),
+    game(W, ['K♠', 'Q♣', 'J♦', 'A♥', '2♠', '3♣', '4♦', '5♥', '6♠', '7♣', '8♦', '9♥'], []), !.
 
 verifica(Escolha) :- 
     length(Escolha, LE), LE > 1,
@@ -27,23 +31,31 @@ verifica(Escolha) :-
     magica(Z, Escolha),
     write('Sua carta é a '), write(Z), write('!'), nl.
 
-game(Baralho, Escolhas) :- 
-    writeln("Escolha uma carta e fale em qual conjunto de deque ela está"), nl,
+cria_tela :-
+    new(W, dialog('Menu')),
+    
+	send(W, size, size(1000, 800)),
+    send(W, open),
+    play(W).
+
+game(W, Baralho, Escolhas) :- repeat,
+	new(T, text('Escolha uma carta e fale em qual conjunto ela está')),
+	new(F, font(screen, bold, 15)),
+	send(T, font(F)),
     separa(Baralho, Baralhos),
-    table(1, Baralhos),
-    read(Escolha), 
-    (
-      length(Baralhos, LB), LB >= Escolha, % verifica se esta entre as opções
-      Index is Escolha-1, % equivale ao index da lista
-      nth0(Index, Baralhos, Deque),
-      append([Deque], Escolhas, NovasEscolhas),
-        (
-          verifica(NovasEscolhas); % verifica se ele já sabe a carta
-      	  game(Baralho, NovasEscolhas)
-        )
-    );
-    writeln("Você deve escolher um número de deque válido."), nl,
-    game(Baralho, Escolhas).
+    nb_setval(baralhos, Baralhos),
+    nb_setval(escolhas, Escolhas),
+    send(W, append, T),
+    table(W, 1, Baralhos),
+	
+	send(W, append, new(B1, fixed_size_button('Deque 1',
+        message(@prolog, escolhe, W, 1))), below),
+	send(W, append, new(B2, fixed_size_button('Deque 2',
+        message(@prolog, escolhe, W, 2))), right),
+    send_list([B1,B2], size(size(220,30))),
+    send(W, layout),
+
+    !.
 
 separa(Baralho, Baralhos) :- 
     random_permutation(Baralho, Embaralhado),
@@ -51,3 +63,19 @@ separa(Baralho, Baralhos) :-
     length(A, N),
     length(B, N),
     Baralhos = [A,B].
+
+
+escolhe(W, Escolha) :-
+    nb_getval(baralhos, Baralhos),
+    nb_getval(escolhas, Escolhas),
+
+    send(W, clear),
+    
+    Index is Escolha-1, % equivale ao index da lista
+    nth0(Index, Baralhos, Deque),
+    append([Deque], Escolhas, NovasEscolhas),
+    (
+        verifica(NovasEscolhas); % verifica se ele já sabe a carta
+        game(W, ['K♠', 'Q♣', 'J♦', 'A♥', '2♠', '3♣', '4♦', '5♥', '6♠', '7♣', '8♦', '9♥'], NovasEscolhas)
+    );
+    !.
