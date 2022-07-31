@@ -16,7 +16,7 @@ estado('Maranhão',nordeste,yes,yes,no,no,yes,yes,yes,no).
 estado('Paraíba',nordeste,yes,no,no,yes,no,no,yes,no).
 estado('Pernambuco',nordeste,yes,no,no,yes,yes,yes,no,no).
 estado('Piauí',nordeste,yes,yes,no,no,yes,no,yes,no).
-estado('Rio Grande do norte',nordeste,yes,no,no,yes,no,no,no,yes).
+estado('Rio Grande do Norte',nordeste,yes,no,no,yes,no,no,no,yes).
 estado('Sergipe',nordeste,yes,no,no,yes,no,no,no,no).
 estado('Distrito Federal',centroOeste,no,yes,no,no,no,no,no,yes).
 estado('Goiás',centroOeste,no,yes,no,no,yes,yes,no,no).
@@ -27,7 +27,7 @@ estado('Minas Gerais',sudeste,no,yes,no,no,yes,yes,no,yes).
 estado('Rio de Janeiro',sudeste,yes,no,no,no,no,yes,no,yes).
 estado('São Paulo',sudeste,yes,yes,no,no,yes,yes,no,yes).
 estado('Paraná',sul,yes,yes,no,yes,no,yes,no,no).
-estado('Rio Grande do sul',sul,yes,no,no,no,no,yes,no,yes).
+estado('Rio Grande do Sul',sul,yes,no,no,no,no,yes,no,yes).
 estado('Santa Catarina',sul,yes,no,no,yes,no,yes,no,yes).
 
 dadosEstados(acre, [norte, 795145, false, false, 4.30, 2, 86.9, 'Acre']).
