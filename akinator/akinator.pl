@@ -145,7 +145,7 @@ estadoSul(W) :-
     retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
     retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
     retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
-    perguntaMar(W),s
+    perguntaMar(W),
     !.
 possuiMar(W, Resposta) :-
     retractall(estado(_, _, Resposta, _, _, _, _, _, _, _)),
