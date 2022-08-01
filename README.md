@@ -1,9 +1,10 @@
 # 2022.1_G2_Logico_AkinatorMagia
-# Akinator/Magia
+
+# Akinator Magia
 
 **Disciplina**: FGA0210 - PARADIGMAS DE PROGRAMAÇÃO - T01 <br>
 **Nro do Grupo**: 02<br>
-**Paradigma**: Logico<br>
+**Paradigma**: Lógico<br>
 
 ## Alunos
 | Matrícula | Aluno                                                               |
@@ -16,41 +17,58 @@
 | 170144488 | [Henrique Amorim Costa Melo](http://github.com/henriqueamorim20)    |
 | 180018574 | [Hérya Rodrigues Alcantara](http://github.com/hryds)                |
 | 180025601 | [Murilo Gomes de Souza](http://github.com/murilogds)                |
+
 ## Sobre 
 O projeto Akinator/magia é um projeto com a finalidade de exercitar o conhecimento da equipe no paradigma logico, a aplicação criada fornece duas formas de se jogar a 1ª um jogo estilo akinator onde o programa vai tentar adivinhar um estado brasiliero em qu o jogador está pensando. Na 2ª forma nós temos um "truque de magica" no qual o programa adivinha a carta escolhida pelo jogador.
-## Screenshots
 
+## Screenshots
 
 **Linguagens**: Prolog<br>
 **Tecnologias**: SWI-Prolog<br>
 
 ## Uso 
 
-
 ## Vídeo
+
 ## Participações
-Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 
 | Aluno | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | ----- | ------------ | ------------------------------------------------------------------------------ |
-| Felipe   | |   |
-| Gabriela | |   |
-| Giovana  | |   |
-| Giovanna | |   |
-| Giulia   | |   |
-| Hérya    | |   |
-| Henrique | |   |
-| Murilo   | |   |
+| Felipe |  |  Excelente |
+| Gabriela |  | Excelente|
+| Giovana | Criação dos fatos e predicados do jogo akinator (_backend_) | Excelente |
+| Giovanna |  |  Excelente |
+| Giulia |  |  Excelente  |
+| Hérya | Criação dos fatos e predicados do jogo akinator (_backend_) |  Excelente  |
+| Henrique |  | Excelente |
+| Murilo |  |  Excelente  |
 
 ## Outros 
 ### I. Lições Aprendidas
+A programação com Prolog trouxe o aprendizado do trabalho com uma linguagem não muito difundida, onde a documentação e dúvidas em fóruns são bem escassas quando comparada, por exemplo, à linguagem utilizada no paradigma anterior (Haskell). Algumas dúvidas que surgiram ao longo da elaboração do projeto não puderam ser sanadas, criando a necessidade de mudança de toda a forma de construção do projeto. Este foi o caso da utlização do predicado "retractall" utilizando uma comparação entre valores: por não conseguirmos utilizar o predicado desta forma, por isso foi necessária a utilização da base com as características descritas em termos de booleanos. 
 
 ### II. Percepções
+Quanto a elaboração do jogo Akinator, foi percebido que a criação da base de dados demandou mais trabalho do que o planejado. Inicialmente, o jogo foi pensado para a adivinhação de países da América. Entretanto, ao iniciar a elaboração da base de dados, concluiu-se que não seria possível realizar adivinhação dos países, uma vez que estes possuem dados muito semelhantes, principlamente se tratando dos países da América Central. Por esse motivo, mudamos o tema para Estados do Brasil, onde foi possível criar [uma base onde todos os estados possuem dados únicos](https://giovanadionisio.notion.site/04952c57a24d48979a037b0ad6841bfb?v=6dfd01dc2c204e428d8bc859f5b506c3). 
+
 
 ### III. Contribuições e Fragilidades
 
-### IV. Trabalhos Futuros
+Quanto as fragilidades, ao jogar o akinator, as primeiras perguntas sempre estão relacionadas à região do estado, o que possibilita a decisão de quais perguntas serão feitas em seguida. No entanto, essa característica torna o jogo um pouco menos dinâmico. 
 
+### IV. Trabalhos Futuros
+No jogo akinator, as mesmas perguntas sempre são realizadas, independente da quantidade de fatos ainda restantes na base de dados. Uma verificação da base para a dedução de quais perguntas precisam ser realizadas com base nos fatos restantes é um possível trabalho futuro. 
 
 ## Fontes
-- Videoaulas e materiais de estudo disponibilizados pela professora Milene Serrano.
+### Akinator
+* Modelo de jogo: https://pt.akinator.com/
+* Dados sobre os estados brasileiros: https://pt.wikipedia.org/wiki/Unidades_federativas_do_Brasil
+  * Base final de dados elaborada pela equipe: https://giovanadionisio.notion.site/04952c57a24d48979a037b0ad6841bfb?v=6dfd01dc2c204e428d8bc859f5b506c3
+* Documentação da Linguagem Prolog: https://www.swi-prolog.org/, para os predicados:
+  * forall/2
+  * findall/3
+  * lenght/2
+* Material de Aula da matéria de Paradigmas de Programação:
+  * Com destaque para o predicado if-then-else.  
+* Dúvidas gerais:
+  * "Prolog how to count the number of facts without using a built in": https://stackoverflow.com/questions/59247778/prolog-how-to-count-the-number-of-facts-without-using-a-built-in
+  * "how can I print all database facts in prolog": https://stackoverflow.com/questions/8510701/how-can-i-print-all-database-facts-in-prolog
