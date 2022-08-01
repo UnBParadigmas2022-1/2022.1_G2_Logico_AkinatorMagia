@@ -2,53 +2,80 @@
 :- style_check(-singleton).
 :- use_module(library(lists)).
 :- use_module(library(pce)).
+
 iniciaTela :- consult('akinator/base.pl'),
     new(W, dialog('Menu')),
     send(W, size, size(900, 500)),
     send(W, background, '#7D97D9'),
     send(W, open),
-    iniciaJogo(W).
-iniciaJogo(W) :-
-    perguntaRegiaoNorte(W), !.
+    perguntaRegiaoNorte(W)
+    !.
+
 perguntaRegiaoNorte(W) :-
     nb_setval(pergunta, 'Seu estado é da região Norte?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaRegiaoNordeste(W) :-
     nb_setval(pergunta, 'Seu estado é da região Nordeste?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaRegiaoCentroOeste(W) :-
     nb_setval(pergunta, 'Seu estado é da região Centro Oeste?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaRegiaoSudeste(W) :-
     nb_setval(pergunta, 'Seu estado é da região Sudeste?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaRegiaoSul(W) :-
     nb_setval(pergunta, 'Seu estado é da região Sul?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaMar(W) :-
     nb_setval(pergunta, 'Seu estado tem acesso ao mar?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaHabitantes(W) :-
     nb_setval(pergunta, 'Seu estado tem mais de 5 milhões de habitantes?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaDensidade(W) :-
     nb_setval(pergunta, 'A densidade populacional do seu estado é menor que 4?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaDivisaRegiao(W) :-
     nb_setval(pergunta, 'O seu estado faz divisa com outras regiões?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaDivisaEstado(W) :-
     nb_setval(pergunta, 'O seu estado faz divisa com mais de três estados?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaAlfabetizacao(W) :-
     nb_setval(pergunta, 'O índice de alfabetização do seu estado é menor que 85%?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaDensidadePopulacional(W) :-
     nb_setval(pergunta, 'A densidade populacional do seu estado está entre 50 e 100?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 perguntaNome(W) :-
     nb_setval(pergunta, 'O nome do seu estado é composto?'),
-    mostra_pergunta(W), !.
+    mostra_pergunta(W),
+    !.
+
 mostra_pergunta(W) :-
     send(W, clear),
     nb_getval(pergunta, Pergunta),
@@ -65,6 +92,7 @@ mostra_pergunta(W) :-
     send(BTS, layout_dialog),
     send(W, layout),
     !.
+
 handleResposta(W, Resposta, Pergunta) :-
     write("Resposta: "),
     write(Resposta), nl,
@@ -118,6 +146,7 @@ estadoNorte(W) :-
     retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
     perguntaMar(W),
     !.
+
 estadoNordeste(W) :-
     retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
     retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
@@ -125,6 +154,7 @@ estadoNordeste(W) :-
     retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
     perguntaMar(W),
     !.
+
 estadoCentroOeste(W) :-
     retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
     retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
@@ -132,6 +162,7 @@ estadoCentroOeste(W) :-
     retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
     perguntaMar(W),
     !.
+
 estadoSudeste(W) :-
     retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
     retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
@@ -139,6 +170,7 @@ estadoSudeste(W) :-
     retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
     perguntaMar(W),
     !.
+
 estadoSul(W) :-
     retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
     retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
@@ -146,33 +178,50 @@ estadoSul(W) :-
     retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
     perguntaMar(W),
     !.
+
 possuiMar(W, Resposta) :-
     retractall(estado(_, _, Resposta, _, _, _, _, _, _, _)),
-    perguntaHabitantes(W), !.
+    perguntaHabitantes(W),
+    !.
+
 possuiHabitantes(W, Resposta) :-
     retractall(estado(_, _, _, _, _, _, _, Resposta, _, _)),
-    perguntaDensidade(W), !.
+    perguntaDensidade(W),
+    !.
+
 possuiDensidade(W, Resposta) :-
     retractall(estado(_, _, _, _, Resposta, _, _, _, _, _)),
-    perguntaDivisaRegiao(W), !.
+    perguntaDivisaRegiao(W),
+    !.
+
 possuiDivisaRegiao(W, Resposta) :-
     retractall(estado(_, _, _, Resposta, _, _, _, _, _, _)),
-    perguntaDivisaEstado(W), !.
+    perguntaDivisaEstado(W),
+    !.
+
 possuiDivisaEstado(W, Resposta) :-
     retractall(estado(_, _, _, _, _, _, Resposta, _, _, _)),
-    perguntaAlfabetizacao(W), !.
+    perguntaAlfabetizacao(W),
+    !.
+
 possuiAlfabetizacao(W, Resposta) :-
     retractall(estado(_, _, _, _, _, _, _, _, Resposta, _)),
-    perguntaDensidadePopulacional(W), !.
+    perguntaDensidadePopulacional(W),
+    !.
+
 possuiDensidadePopulacional(W, Resposta) :-
     retractall(estado(_, _, _, _, _, Resposta, _, _, _, _)),
-    perguntaNome(W), !.
+    perguntaNome(W),
+    !.
+
 possuiNome(W, Resposta) :-
     retractall(estado(_, _, _, _, _, _, _, _, _, Resposta)),
-    anunciaResultado(W), !.
+    anunciaResultado(W),
+    !.
+
 anunciaResultado(W) :-
-    write('aqui'), nl,
-    findall(D, estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), List),
+    findall(1, estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), List),
     length(List, Count),
-    write(D), nl,
+    Count == 1,
+    forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC)))
     !.
