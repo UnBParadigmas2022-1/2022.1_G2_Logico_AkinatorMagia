@@ -1,20 +1,39 @@
 :- initialization(akinator).
 :- style_check(-singleton).
 :- use_module(library(lists)).
+:- use_module(library(pce)).
 
 akinator :- consult('akinator/base.pl'),
-            perguntaRegiao.
-            %print_list(Estados).
+    new(W, dialog('Menu')),
+	send(W, size, size(900, 500)),
+    send(W, background, '#7D97D9'),
+    send(W, open),
+    perguntaRegiao(W).
 
-print_list([]):-nl. %nl = newline
-print_list([H|T]):-write(H),write(' '),print_list(T).
 
-perguntaRegiao :- write("Seu estado é da região Norte?"),
-                  read(R),
-                  (resposta(sim, R) ->
-                    perguntasNorte,
-                    !
-                  ).
+mostra_pergunta(W) :-
+    nb_getval(pergunta, Pergunta),
+    new(T, text(Pergunta)),
+    new(F, font(screen, bold, 25)),
+    send(T, font(F)),
+    send(T, colour('#D9CF68')),
+    send(W, gap, size(200, 70)),
+    send(W, append, T),
+    send(W, append, new(BTS, dialog_group(buttons, group))),
+    send(BTS, append, new(B1, fixed_size_button('não', message(@prolog, setResposta, 1))), below),
+    send(BTS, append, new(B2, fixed_size_button('sim', message(@prolog, setResposta, 2))), right),
+    send_list([B1,B2], size(size(250,40))),
+    send(BTS, layout_dialog),
+    send(W, layout),
+    !.
+
+setResposta(Resposta) :-
+    write(Resposta) !.
+
+perguntaRegiao(W) :-
+    nb_setval(pergunta, 'Seu estado é da região Norte?'),
+    mostra_pergunta(W), !.
+
 perguntaRegiao :- write("Seu estado é da região Nordeste?"),
                   read(R),
                   (resposta(sim, R) ->

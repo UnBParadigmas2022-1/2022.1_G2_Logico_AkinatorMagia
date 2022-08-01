@@ -27,7 +27,7 @@ menu:-  repeat,
 	send_list([B1,B2,B3], size(size(320,50))),
 	send(BTS, layout_dialog),
 	send(W, layout),
-    send(W, open),
+  	send(W, open),
 	!.
 
 option(0):- !.
