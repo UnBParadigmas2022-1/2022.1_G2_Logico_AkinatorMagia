@@ -1,35 +1,25 @@
-# RepositorioTemplate
-Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
-As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
+# 2022.1_G2_Logico_AkinatorMagia
 
-**!! *Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(Paradigma)_(NomeDoProjeto)*. !!** 
-
-Paradigmas:
- - Funcional
- - Logico
- - SMA
-
-**!! *Não coloque os nomes dos alunos no título do repositório*. !!**
-
-**!! *Exemplo de título correto: 2022.1_G1_Logico_ProjetoRoteirosAereos*. !!**
- 
- (Apague esses comentários)
-
-# NomeDoProjeto
+# Akinator Magia
 
 **Disciplina**: FGA0210 - PARADIGMAS DE PROGRAMAÇÃO - T01 <br>
-**Nro do Grupo**: XX<br>
-**Paradigma**: XXXXXXXXXX<br>
+**Nro do Grupo**: 02<br>
+**Paradigma**: Lógico<br>
 
 ## Alunos
-|Matrícula | Aluno |
-| -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| Matrícula | Aluno                                                               |
+| --------- | ------------------------------------------------------------------- |
+| 180119818 | [Felipe Boccardi Silva Agustini](http://github.com/fealps)          |
+| 180052845 | [Gabriela da Gama Pivetta](http://github.com/gabrielapivetta)       |
+| 180017659 | [Giovana Vitor Dionisio Santana](http://github.com/giovanadionisio) |
+| 170011267 | [Giovanna Borges Bottino](http://github.com/giovannabbottino)       |
+| 180017870 | [Giulia Lobo Barros](http://github.com/Giuulob89)                   |
+| 170144488 | [Henrique Amorim Costa Melo](http://github.com/henriqueamorim20)    |
+| 180018574 | [Hérya Rodrigues Alcantara](http://github.com/hryds)                |
+| 180025601 | [Murilo Gomes de Souza](http://github.com/murilogds)                |
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais. 
-Use referências, links, que permitam conhecer um pouco mais sobre o projeto.
+Projeto contendo dois jogos: um truque de mágica e um "adivinhador" de estados do Brasil, inspirado no jogo [Akinator](https://pt.akinator.com/). 
 
 ## Screenshots
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
