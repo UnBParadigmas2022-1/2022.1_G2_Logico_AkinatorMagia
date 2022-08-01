@@ -1,16 +1,55 @@
-:- initialization(akinator).
+Gabriela Pivetta, [01/08/22 19:44]
+:- initialization(iniciaTela).
 :- style_check(-singleton).
 :- use_module(library(lists)).
 :- use_module(library(pce)).
-
-akinator :- consult('akinator/base.pl'),
+iniciaTela :- consult('akinator/base.pl'),
     new(W, dialog('Menu')),
-	send(W, size, size(900, 500)),
+    send(W, size, size(900, 500)),
     send(W, background, '#7D97D9'),
     send(W, open),
-    perguntaRegiao(W).
-
-
+    iniciaJogo(W).
+iniciaJogo(W) :-
+    perguntaRegiaoNorte(W), !.
+perguntaRegiaoNorte(W) :-
+    nb_setval(pergunta, 'Seu estado é da região Norte?'),
+    mostra_pergunta(W), !.
+perguntaRegiaoNordeste(W) :-
+    nb_setval(pergunta, 'Seu estado é da região Nordeste?'),
+    mostra_pergunta(W), !.
+perguntaRegiaoCentroOeste(W) :-
+    nb_setval(pergunta, 'Seu estado é da região Centro Oeste?'),
+    mostra_pergunta(W), !.
+perguntaRegiaoSudeste(W) :-
+    nb_setval(pergunta, 'Seu estado é da região Sudeste?'),
+    mostra_pergunta(W), !.
+perguntaRegiaoSul(W) :-
+    nb_setval(pergunta, 'Seu estado é da região Sul?'),
+    mostra_pergunta(W), !.
+perguntaMar(W) :-
+    nb_setval(pergunta, 'Seu estado tem acesso ao mar?'),
+    mostra_pergunta(W), !.
+perguntaHabitantes(W) :-
+    nb_setval(pergunta, 'Seu estado tem mais de 5 milhões de habitantes?'),
+    mostra_pergunta(W), !.
+perguntaDensidade(W) :-
+    nb_setval(pergunta, 'A densidade populacional do seu estado é menor que 4?'),
+    mostra_pergunta(W), !.
+perguntaDivisaRegiao(W) :-
+    nb_setval(pergunta, 'O seu estado faz divisa com outras regiões?'),
+    mostra_pergunta(W), !.
+perguntaDivisaEstado(W) :-
+    nb_setval(pergunta, 'O seu estado faz divisa com mais de três estados?'),
+    mostra_pergunta(W), !.
+perguntaAlfabetizacao(W) :-
+    nb_setval(pergunta, 'O índice de alfabetização do seu estado é menor que 85%?'),
+    mostra_pergunta(W), !.
+perguntaDensidadePopulacional(W) :-
+    nb_setval(pergunta, 'A densidade populacional do seu estado está entre 50 e 100?'),
+    mostra_pergunta(W), !.
+perguntaNome(W) :-
+    nb_setval(pergunta, 'O nome do seu estado é composto?'),
+    mostra_pergunta(W), !.
 mostra_pergunta(W) :-
     send(W, clear),
     nb_getval(pergunta, Pergunta),
@@ -21,320 +60,120 @@ mostra_pergunta(W) :-
     send(W, gap, size(200, 70)),
     send(W, append, T),
     send(W, append, new(BTS, dialog_group(buttons, group))),
-    send(BTS, append, new(B1, fixed_size_button('não', message(@prolog, setResposta, 1))), below),
-    send(BTS, append, new(B2, fixed_size_button('sim', message(@prolog, setResposta, 2))), right),
+    send(BTS, append, new(B1, fixed_size_button('não', message(@prolog, handleResposta, W, 1, Pergunta))), below),
+    send(BTS, append, new(B2, fixed_size_button('sim', message(@prolog, handleResposta, W, 2, Pergunta))), right),
     send_list([B1,B2], size(size(250,40))),
     send(BTS, layout_dialog),
     send(W, layout),
     !.
-
-% TODO - setar reposta do usuário(1- não, 2-sim)
-setResposta(Resposta) :-
-    write(Resposta) !.
-
-perguntaRegiao(W) :-
-    nb_setval(pergunta, 'Seu estado é da região Norte?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 -> perguntasNorte ; true),
+handleResposta(W, Resposta, Pergunta) :-
+    write("Resposta: "),
+    write(Resposta), nl,
+    write("Pergunta: "),
+    write(Pergunta), nl,
+    (Pergunta = 'Seu estado é da região Norte?' ->
+       (Resposta = 2 -> estadoNorte(W) ; perguntaRegiaoNordeste(W))
+    );
+    (Pergunta = 'Seu estado é da região Nordeste?' ->
+        (Resposta = 2 -> estadoNordeste(W) ; perguntaRegiaoCentroOeste(W))
+    );
+    (Pergunta = 'Seu estado é da região Centro Oeste?' ->
+        (Resposta = 2 -> estadoCentroOeste(W) ; perguntaRegiaoSudeste(W))
+    );
+    (Pergunta = 'Seu estado é da região Sudeste?' ->
+        (Resposta = 2 -> estadoSudeste(W) ; perguntaRegiaoSul(W))
+    );
+    (Pergunta = 'Seu estado é da região Sul?' ->
+        (Resposta = 2 -> estadoSul(W) ; anunciaResultado(W))
+    );
+    (Pergunta = 'Seu estado tem acesso ao mar?' ->
+        (Resposta = 2 -> possuiMar(W, yes) ; possuiMar(W, no))
+    );
+    (Pergunta = 'Seu estado tem mais de 5 milhões de habitantes?' ->
+        (Resposta = 2 -> possuiHabitantes(W, yes) ; possuiHabitantes(W, no))
+    );
+    (Pergunta = 'A densidade populacional do seu estado é menor que 4?' ->
+        (Resposta = 2 -> possuiDensidade(W, yes) ; possuiDensidade(W, no))
+    );
+    (Pergunta = 'O seu estado faz divisa com outras regiões?' ->
+        (Resposta = 2 -> possuiDivisaRegiao(W, yes) ; possuiDivisaRegiao(W, no))
+    );
+    (Pergunta = 'O seu estado faz divisa com mais de três estados?' ->
+        (Resposta = 2 -> possuiDivisaEstado(W, yes) ; possuiDivisaEstado(W, no))
+    );
+    (Pergunta = 'O índice de alfabetização do seu estado é menor que 85%?' ->
+        (Resposta = 2 -> possuiAlfabetizacao(W, yes) ; possuiAlfabetizacao(W, no))
+    );
+    (Pergunta = 'A densidade populacional do seu estado está entre 50 e 100?' ->
+        (Resposta = 2 -> possuiDensidadePopulacional(W, yes) ; possuiDensidadePopulacional(W, no))
+    );
+    (Pergunta = 'O nome do seu estado é composto?' ->
+        (Resposta = 2 -> possuiNome(W, yes) ; possuiNome(W, no))
+    );
     !.
 
-perguntaRegiao(W) :-
-    nb_setval(pergunta, 'Seu estado é da região Nordeste?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 -> perguntasNordeste ; true),
+estadoNorte(W) :-
+    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
+    perguntaMar(W),
     !.
-
-perguntaRegiao(W) :-
-    nb_setval(pergunta, 'Seu estado é da região Centro Oeste?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, perguntasCentroOeste),
-    (Resposta=2 -> perguntasNordeste ; true),
+estadoNordeste(W) :-
+    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
+    perguntaMar(W),
     !.
-
-perguntaRegiao(W) :-
-    nb_setval(pergunta, 'Seu estado é da região Sudeste?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, perguntasCentroOeste),
-    (Resposta=2 -> perguntasSudeste ; true),
+estadoCentroOeste(W) :-
+    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
+    perguntaMar(W),
     !.
-
-perguntaRegiao(W) :-
-    nb_setval(pergunta, 'Seu estado é da região Sul?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, perguntasCentroOeste),
-    (Resposta=2 -> perguntasSul ; true),
+estadoSudeste(W) :-
+    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
+    perguntaMar(W),
     !.
-
-perguntaRegiao(W) :- anunciaResultado.
-
-anunciaResultado :-
-    findall(1, estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), List),
+estadoSul(W) :-
+    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
+    perguntaMar(W),s
+    !.
+possuiMar(W, Resposta) :-
+    retractall(estado(_, _, Resposta, _, _, _, _, _, _, _)),
+    perguntaHabitantes(W), !.
+possuiHabitantes(W, Resposta) :-
+    retractall(estado(_, _, _, _, _, _, _, Resposta, _, _)),
+    perguntaDensidade(W), !.
+possuiDensidade(W, Resposta) :-
+    retractall(estado(_, _, _, _, Resposta, _, _, _, _, _)),
+    perguntaDivisaRegiao(W), !.
+possuiDivisaRegiao(W, Resposta) :-
+    retractall(estado(_, _, _, Resposta, _, _, _, _, _, _)),
+    perguntaDivisaEstado(W), !.
+possuiDivisaEstado(W, Resposta) :-
+    retractall(estado(_, _, _, _, _, _, Resposta, _, _, _)),
+    perguntaAlfabetizacao(W), !.
+possuiAlfabetizacao(W, Resposta) :-
+    retractall(estado(_, _, _, _, _, _, _, _, Resposta, _)),
+    perguntaDensidadePopulacional(W), !.
+possuiDensidadePopulacional(W, Resposta) :-
+    retractall(estado(_, _, _, _, _, Resposta, _, _, _, _)),
+    perguntaNome(W), !.
+possuiNome(W, Resposta) :-
+    retractall(estado(_, _, _, _, _, _, _, _, _, Resposta)),
+    anunciaResultado(W), !.
+anunciaResultado(W) :-
+    write('aqui'), nl,
+    findall(D, estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), List),
     length(List, Count),
-    Count == 1,
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))).
-    send(W, clear),
-    format(atom(S), 'Seu estado é  ~w!', estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC)),
-    new(SI, text(S)),
-    new(TI, text('Fim do Jogo!')),
-	new(FI, font(screen, bold, 35)),
-	send(TI, font(FI)),
-    send(SI, font(FI)),
-    send(TI,colour('#D9CF68')),
-    send(SI,colour('#D9CF68')),
-    send(W, append(TI)),
-    send(W, append, SI, below),
-    send(W, gap, size(100, 30)),
-    send(W, append, new(B3, fixed_size_button('Sair', message(W, destroy))), below),
-    send(B3, size(size(350,40))),
-    send(W, layout).
+    write(D), nl,
     !.
-anunciaResultado :-
-    send(W, clear),
-    new(T, text('Não foi possível encontrar o seu estado. Tem certeza que ele faz parte do Brasil?')),
-    new(TI, text('Fim do Jogo!')),
-	new(FI, font(screen, bold, 35)),
-	send(TI, font(FI)),
-    send(T, font(FI)),
-    send(TI,colour('#D9CF68')),
-    send(T,colour('#D9CF68')),
-    send(W, append(TI)),
-    send(W, append, T, below),
-    send(W, gap, size(100, 30)),
-    send(W, append, new(B3, fixed_size_button('Sair', message(W, destroy))), below),
-    send(B3, size(size(350,40))),
-    send(W, layout).
-    !.
-
-% estado (estado, [regiao, numeroHabitantes, acessoAoLitoral, divisaOutraRegiao, densidadePopulacional, numeroDivisas, indiceAlfabetizacao, nome])
-perguntasNorte :-
-    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'Seu estado tem acesso ao mar?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, yes, _, _, _, _, _, _, _));
-        retractall(estado(_, _, no, _, _, _, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'Seu estado tem mais de 5 milhões de habitantes?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, _, yes, _, _));
-        retractall(estado(_, _, _, _, _, _, _, no, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'A densidade populacional do seu estado é menor que 4?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, yes, _, _, _, _, _));
-        retractall(estado(_, _, _, _, no, _, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O seu estado faz divisa com outras regiões?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, yes, _, _, _, _, _, _));
-        retractall(estado(_, _, _, no, _, _, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O seu estado faz divisa com mais de três estados?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, yes, _, _, _));
-        retractall(estado(_, _, _, _, _, _, no, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    anunciaResultado.
-
-perguntasNordeste :-
-% +5M de habitantes, Alfabetização < 85%, densidadePopulacional entre 50 e 100, divisa com + de 3 estados, divisaOutraRegiao, nomeComposto
-    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'Seu estado tem mais de 5 milhões de habitantes?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, _, yes, _, _));
-        retractall(estado(_, _, _, _, _, _, _, no, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O índice de alfabetização do seu estado é menor que 85%?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, _, _, yes, _));
-        retractall(estado(_, _, _, _, _, _, _, _, no, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'A densidade populacional do seu estado está entre 50 e 100?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, yes, _, _, _, _));
-        retractall(estado(_, _, _, _, _, no, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O seu estado faz divisa com mais de três estados?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, yes, _, _, _));
-        retractall(estado(_, _, _, _, _, _, no, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O seu estado faz divisa com outras regiões?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, yes, _, _, _, _, _, _));
-        retractall(estado(_, _, _, no, _, _, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O nome do seu estado é composto?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, _, _, _, yes));
-        retractall(estado(_, _, _, _, _, _, _, _, _, no))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    anunciaResultado.
-
-perguntasCentroOeste :-
-% +5M de habitantes, densidadePopulacional, Divisa com + de 3 estados
-
-    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'Seu estado tem mais de 5 milhões de habitantes?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, _, yes, _, _));
-        retractall(estado(_, _, _, _, _, _, _, no, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'A densidade populacional do seu estado é menor que 4?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, yes, _, _, _, _, _));
-        retractall(estado(_, _, _, _, no, _, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O seu estado faz divisa com mais de três estados?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, yes, _, _, _));
-        retractall(estado(_, _, _, _, _, _, no, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    anunciaResultado.
-
-
-perguntasSudeste :-
-% litoral, +5 mi de habitantes, divisa com +3 estados
-    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
-    forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'Seu estado tem acesso ao mar?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, yes, _, _, _, _, _, _, _));
-        retractall(estado(_, _, no, _, _, _, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'Seu estado tem mais de 5 milhões de habitantes?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, _, yes, _, _));
-        retractall(estado(_, _, _, _, _, _, _, no, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O seu estado faz divisa com mais de três estados?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, yes, _, _, _));
-        retractall(estado(_, _, _, _, _, _, no, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    anunciaResultado.
-
-perguntasSul :-
-% densidadePopulacional entra 50 e 100, divisa com outras regioes, nome composto
-
-    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
-    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'A densidade populacional do seu estado está entre 50 e 100?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, yes, _, _, _, _));
-        retractall(estado(_, _, _, _, _, no, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O seu estado faz divisa com outras regiões?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, yes, _, _, _, _, _, _));
-        retractall(estado(_, _, _, no, _, _, _, _, _, _))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-
-    nb_setval(pergunta, 'O nome do seu estado é composto?'),
-    mostra_pergunta(W),
-    nb_getval(resposta, Resposta),
-    (Resposta=2 ->
-        retractall(estado(_, _, _, _, _, _, _, _, _, yes));
-        retractall(estado(_, _, _, _, _, _, _, _, _, no))
-    ),
-    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-    anunciaResultado.
