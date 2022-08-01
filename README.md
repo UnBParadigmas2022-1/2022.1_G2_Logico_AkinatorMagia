@@ -46,11 +46,16 @@ OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
 TEMPO: +/- 15min
 
 ## Participações
-Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
-|Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
-| -- | -- | -- |
-| Fulano  |  Programação dos Fatos da Base de Conhecimento Lógica | Boa |
-
+| Aluno | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
+| ----- | ------------ | ------------------------------------------------------------------------------ |
+| Felipe |  |  Excelente |
+| Gabriela |  | Excelente|
+| Giovana | Criação dos fatos e predicados do jogo akinator (_backend_) | Excelente |
+| Giovanna | Programação das Cartas, Tabuleiro e Finalização do trabalho    |  Excelente |
+| Giulia |  |  Excelente  |
+| Hérya | Criação dos fatos e predicados do jogo akinator (_backend_) |  Excelente  |
+| Henrique |  | Excelente |
+| Murilo |  |  Excelente  |
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui.
 (i) Lições Aprendidas;
