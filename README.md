@@ -19,7 +19,7 @@
 | 180025601 | [Murilo Gomes de Souza](http://github.com/murilogds)                |
 
 ## Sobre 
-O projeto Akinator/magia é um projeto com a finalidade de exercitar o conhecimento da equipe no paradigma logico, a aplicação criada fornece duas formas de se jogar a 1ª um jogo estilo akinator onde o programa vai tentar adivinhar um estado brasiliero em qu o jogador está pensando. Na 2ª forma nós temos um "truque de magica" no qual o programa adivinha a carta escolhida pelo jogador.
+O projeto Akinator/magia é um projeto com a finalidade de exercitar o conhecimento da equipe no paradigma logico, a aplicação criada fornece duas formas de se jogar a 1ª um jogo estilo akinator onde o programa vai tentar adivinhar um estado brasiliero em que o jogador está pensando. Na 2ª forma nós temos um "truque de magica" no qual o programa adivinha a carta escolhida pelo jogador.
 
 ## Screenshots
 
@@ -34,14 +34,14 @@ O projeto Akinator/magia é um projeto com a finalidade de exercitar o conhecime
 
 | Aluno | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | ----- | ------------ | ------------------------------------------------------------------------------ |
-| Felipe |  |  Excelente |
-| Gabriela |  | Excelente|
-| Giovana | Criação dos fatos e predicados do jogo akinator (_backend_) | Excelente |
-| Giovanna |  |  Excelente |
-| Giulia |  |  Excelente  |
-| Hérya | Criação dos fatos e predicados do jogo akinator (_backend_) |  Excelente  |
-| Henrique |  | Excelente |
-| Murilo |  |  Excelente  |
+| Felipe | Desenvolvimento da regra de verificação de fim de jogo, game e auxilio no desenvolvimento do predicado magica no backend do truque de magica | Excelente |
+| Gabriela | Finalização do jogo e Interface do Akinator                                                                                                | Excelente |
+| Giovana | Criação dos fatos e predicados do jogo akinator (_backend_)                                                                                 | Excelente |
+| Giovanna Bottino | Desenvolvimento da regra de verificação de fim de jogo, game e magica no backend do truque de magica                               | Excelente |
+| Giulia | Desenvolvimento de verificação de entrada de usuário e interface do truque de magica                                                         | Excelente |
+| Hérya | Criação dos fatos e predicados do jogo akinator (_backend_)                                                                                   | Excelente |
+| Henrique | Finalização do jogo e Interface do Akinator                                                                                                | Excelente |
+| Murilo | Desenvolvimento de verificação de entrada de usuário e interface do truque de magica                                                         | Excelente |
 
 ## Outros 
 ### I. Lições Aprendidas
@@ -50,14 +50,17 @@ A programação com Prolog trouxe o aprendizado do trabalho com uma linguagem n�
 ### II. Percepções
 Quanto a elaboração do jogo Akinator, foi percebido que a criação da base de dados demandou mais trabalho do que o planejado. Inicialmente, o jogo foi pensado para a adivinhação de países da América. Entretanto, ao iniciar a elaboração da base de dados, concluiu-se que não seria possível realizar adivinhação dos países, uma vez que estes possuem dados muito semelhantes, principlamente se tratando dos países da América Central. Por esse motivo, mudamos o tema para Estados do Brasil, onde foi possível criar [uma base onde todos os estados possuem dados únicos](https://giovanadionisio.notion.site/04952c57a24d48979a037b0ad6841bfb?v=6dfd01dc2c204e428d8bc859f5b506c3). 
 
-
+Já no truque de magica, não foi necessario a criação de uma base de dados complexa, o desenvolvimento foi simples e o objetivo foi alcançado rapidamente. A programação lógica se mostrou muito eficiente para elaboração de deduções, comparada a outras linguagens elaborar esse mesmo truque iria requerer um grande numero de condicionais.
 ### III. Contribuições e Fragilidades
 
 Quanto as fragilidades, ao jogar o akinator, as primeiras perguntas sempre estão relacionadas à região do estado, o que possibilita a decisão de quais perguntas serão feitas em seguida. No entanto, essa característica torna o jogo um pouco menos dinâmico. 
 
+É facil de se adivinhar a maneira com que o programa "descobre" a carta escolhida, pois o truque de mágica real envolvido é simples. Além disso como é usado o predicado random_permutation/2 para embaralhar existe a possibilidade, embora ainda não tenha acontecido, que o programa nunca acerte a carta.
+
 ### IV. Trabalhos Futuros
 No jogo akinator, as mesmas perguntas sempre são realizadas, independente da quantidade de fatos ainda restantes na base de dados. Uma verificação da base para a dedução de quais perguntas precisam ser realizadas com base nos fatos restantes é um possível trabalho futuro. 
 
+Para melhorar o truque de mágica podemos adicionar as cartas como fatos e também dividir em mais de dois decks.
 ## Fontes
 ### Akinator
 * Modelo de jogo: https://pt.akinator.com/
@@ -72,3 +75,12 @@ No jogo akinator, as mesmas perguntas sempre são realizadas, independente da qu
 * Dúvidas gerais:
   * "Prolog how to count the number of facts without using a built in": https://stackoverflow.com/questions/59247778/prolog-how-to-count-the-number-of-facts-without-using-a-built-in
   * "how can I print all database facts in prolog": https://stackoverflow.com/questions/8510701/how-can-i-print-all-database-facts-in-prolog
+
+### Magica
+* Documentação da Linguagem Prolog: https://www.swi-prolog.org/
+* Material de Aula da matéria de Paradigmas de Programação
+* Sites para duvida em geral:
+  * https://stackoverflow.com/questions/34997923/prolog-split-a-list-into-a-list-of-n-lists-containing-n-items-each
+  * https://rodrigorgs.github.io/aulas/mata56/aula06-prolog-listas
+  * https://www.complang.tuwien.ac.at/ulrich/iso-prolog/prologue#length
+  * https://www.swi-prolog.org/pldoc/doc_for?object=random_permutation/2
