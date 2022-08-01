@@ -33,5 +33,5 @@ menu:-  repeat,
 option(0):- !.
 option(1):-
     consult(truque/magica), !.
-option(2):- write('Abrindo akinator...'), nl, !.
-option(_):- write('Não é uma opção válida'), nl, !.
+option(2):-
+	consult(akinator/akinator), !.
