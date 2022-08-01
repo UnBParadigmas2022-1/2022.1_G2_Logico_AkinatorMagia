@@ -23,10 +23,31 @@ O projeto Akinator/magia é um projeto com a finalidade de exercitar o conhecime
 
 ## Screenshots
 
+> Menu Principal
+![Menu Principal](./assets/menu_principal.png)
+
+> Truque de Mágica
+![Truque de Mágica](./assets/truque_magica.png)
+
+## Instalação
+
 **Linguagens**: Prolog<br>
 **Tecnologias**: SWI-Prolog<br>
 
+- Para rodar o projeto a linguagem Prolog deve estar instalada
+- Também é necessário ter a biblioteca xpce instalada
+  > Pode ser que para Windows e Mac essa biblioteca não esteja disponível
+- Clonar o projeto
+- No terminal, entrar na pasta do projeto
+- Utilizar o comando 'swipl' para rodar o prolog
+- No prolog utilizar o comando '[menu].'
+
 ## Uso 
+
+Para usar o projeto é simples! Depois que forem feitos os passos listados no tópico acima, a interface do menu principal já estará aparecendo e, a partir desse momento, é só escolher o jogo que deseja jogar, como mostra o gif abaixo:
+
+> Truque de Mágica
+![Truque de Mágica](./assets/truque_magica.gif)
 
 ## Vídeo
 
@@ -51,6 +72,7 @@ A programação com Prolog trouxe o aprendizado do trabalho com uma linguagem n�
 Quanto a elaboração do jogo Akinator, foi percebido que a criação da base de dados demandou mais trabalho do que o planejado. Inicialmente, o jogo foi pensado para a adivinhação de países da América. Entretanto, ao iniciar a elaboração da base de dados, concluiu-se que não seria possível realizar adivinhação dos países, uma vez que estes possuem dados muito semelhantes, principlamente se tratando dos países da América Central. Por esse motivo, mudamos o tema para Estados do Brasil, onde foi possível criar [uma base onde todos os estados possuem dados únicos](https://giovanadionisio.notion.site/04952c57a24d48979a037b0ad6841bfb?v=6dfd01dc2c204e428d8bc859f5b506c3). 
 
 Já no truque de magica, não foi necessario a criação de uma base de dados complexa, o desenvolvimento foi simples e o objetivo foi alcançado rapidamente. A programação lógica se mostrou muito eficiente para elaboração de deduções, comparada a outras linguagens elaborar esse mesmo truque iria requerer um grande numero de condicionais.
+
 ### III. Contribuições e Fragilidades
 
 Quanto as fragilidades, ao jogar o akinator, as primeiras perguntas sempre estão relacionadas à região do estado, o que possibilita a decisão de quais perguntas serão feitas em seguida. No entanto, essa característica torna o jogo um pouco menos dinâmico. 
@@ -61,7 +83,9 @@ Quanto as fragilidades, ao jogar o akinator, as primeiras perguntas sempre estã
 No jogo akinator, as mesmas perguntas sempre são realizadas, independente da quantidade de fatos ainda restantes na base de dados. Uma verificação da base para a dedução de quais perguntas precisam ser realizadas com base nos fatos restantes é um possível trabalho futuro. 
 
 Para melhorar o truque de mágica podemos adicionar as cartas como fatos e também dividir em mais de dois decks.
+
 ## Fontes
+
 ### Akinator
 * Modelo de jogo: https://pt.akinator.com/
 * Dados sobre os estados brasileiros: https://pt.wikipedia.org/wiki/Unidades_federativas_do_Brasil
