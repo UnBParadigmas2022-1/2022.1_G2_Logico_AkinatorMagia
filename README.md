@@ -100,7 +100,7 @@ Para melhorar o truque de mágica podemos adicionar as cartas como fatos e tamb�
   * "Prolog how to count the number of facts without using a built in": https://stackoverflow.com/questions/59247778/prolog-how-to-count-the-number-of-facts-without-using-a-built-in
   * "how can I print all database facts in prolog": https://stackoverflow.com/questions/8510701/how-can-i-print-all-database-facts-in-prolog
 
-### Magica
+### Mágica
 * Documentação da Linguagem Prolog: https://www.swi-prolog.org/
 * Material de Aula da matéria de Paradigmas de Programação
 * Sites para duvida em geral:
