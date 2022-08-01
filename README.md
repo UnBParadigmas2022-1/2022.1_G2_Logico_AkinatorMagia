@@ -56,12 +56,21 @@ TEMPO: +/- 15min
 | Hérya | Criação dos fatos e predicados do jogo akinator (_backend_) |  Excelente  |
 | Henrique |  | Excelente |
 | Murilo |  |  Excelente  |
+
 ## Outros 
-Quaisquer outras informações sobre o projeto podem ser descritas aqui.
-(i) Lições Aprendidas;
-(ii) Percepções;
-(iii) Contribuições e Fragilidades, e
-(iV) Trabalhos Futuros.
+### I. Lições Aprendidas
+A programação com Prolog trouxe o aprendizado do trabalho com uma linguagem não muito difundida, onde a documentação e dúvidas em fóruns são bem escassas quando comparada, por exemplo, à linguagem utilizada no paradigma anterior (Haskell). Algumas dúvidas que surgiram ao longo da elaboração do projeto não puderam ser sanadas, criando a necessidade de mudança de toda a forma de construção do projeto. Este foi o caso da utlização do predicado "retractall" utilizando uma comparação entre valores: por não conseguirmos utilizar o predicado desta forma, por isso foi necessária a utilização da base com as características descritas em termos de booleanos. 
+
+### II. Percepções
+Quanto a elaboração do jogo Akinator, foi percebido que a criação da base de dados demandou mais trabalho do que o planejado. Inicialmente, o jogo foi pensado para a adivinhação de países da América. Entretanto, ao iniciar a elaboração da base de dados, concluiu-se que não seria possível realizar adivinhação dos países, uma vez que estes possuem dados muito semelhantes, principlamente se tratando dos países da América Central. Por esse motivo, mudamos o tema para Estados do Brasil, onde foi possível criar [uma base onde todos os estados possuem dados únicos](https://giovanadionisio.notion.site/04952c57a24d48979a037b0ad6841bfb?v=6dfd01dc2c204e428d8bc859f5b506c3). 
+
+
+### III. Contribuições e Fragilidades
+
+Quanto as fragilidades, ao jogar o akinator, as primeiras perguntas sempre estão relacionadas à região do estado, o que possibilita a decisão de quais perguntas serão feitas em seguida. No entanto, essa característica torna o jogo um pouco menos dinâmico. 
+
+### IV. Trabalhos Futuros
+No jogo akinator, as mesmas perguntas sempre são realizadas, independente da quantidade de fatos ainda restantes na base de dados. Uma verificação da base para a dedução de quais perguntas precisam ser realizadas com base nos fatos restantes é um possível trabalho futuro. 
 
 ## Fontes
 ### Akinator
