@@ -59,5 +59,16 @@ Quaisquer outras informações sobre o projeto podem ser descritas aqui.
 (iV) Trabalhos Futuros.
 
 ## Fontes
-Referencie, adequadamente, as referências utilizadas.
-Indique ainda, fontes de leitura complementares.
+### Akinator
+* Modelo de jogo: https://pt.akinator.com/
+* Dados sobre os estados brasileiros: https://pt.wikipedia.org/wiki/Unidades_federativas_do_Brasil
+  * Base final de dados elaborada pela equipe: https://giovanadionisio.notion.site/04952c57a24d48979a037b0ad6841bfb?v=6dfd01dc2c204e428d8bc859f5b506c3
+* Documentação da Linguagem Prolog: https://www.swi-prolog.org/, para os predicados:
+  * forall/2
+  * findall/3
+  * lenght/2
+* Material de Aula da matéria de Paradigmas de Programação:
+  * Com destaque para o predicado if-then-else.  
+* Dúvidas gerais:
+  * "Prolog how to count the number of facts without using a built in": https://stackoverflow.com/questions/59247778/prolog-how-to-count-the-number-of-facts-without-using-a-built-in
+  * "how can I print all database facts in prolog": https://stackoverflow.com/questions/8510701/how-can-i-print-all-database-facts-in-prolog
