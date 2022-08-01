@@ -51,7 +51,7 @@ TEMPO: +/- 15min
 | Felipe |  |  Excelente |
 | Gabriela |  | Excelente|
 | Giovana | Criação dos fatos e predicados do jogo akinator (_backend_) | Excelente |
-| Giovanna | Programação das Cartas, Tabuleiro e Finalização do trabalho    |  Excelente |
+| Giovanna |  |  Excelente |
 | Giulia |  |  Excelente  |
 | Hérya | Criação dos fatos e predicados do jogo akinator (_backend_) |  Excelente  |
 | Henrique |  | Excelente |
