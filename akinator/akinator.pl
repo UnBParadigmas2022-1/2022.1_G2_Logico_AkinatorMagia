@@ -276,29 +276,32 @@ perguntasSudeste :-
     retractall(estado(_, sul, _, _, _, _, _, _, _, _)),
     forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
 
-    write("Seu estado tem acesso ao mar?"),
-    read(X),
-    ifThenElse(resposta(sim,X),
-    retractall(estado(_, _, no, _, _, _, _, _, _, _)),
-    retractall(estado(_, _, yes, _, _, _, _, _, _, _))
+    nb_setval(pergunta, 'Seu estado tem acesso ao mar?'),
+    mostra_pergunta(W),
+    nb_getval(resposta, Resposta),
+    (Resposta=2 ->
+        retractall(estado(_, _, yes, _, _, _, _, _, _, _));
+        retractall(estado(_, _, no, _, _, _, _, _, _, _))
     ),
-    forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
+    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
 
-    write("Seu estado tem mais de 5 milhões de habitantes?"),
-    read(Y),
-    ifThenElse(resposta(sim,Y),
-    retractall(estado(_, _, _, _, _, _, _, no, _, _)),
-    retractall(estado(_, _, _, _, _, _, _, yes, _, _))
+    nb_setval(pergunta, 'Seu estado tem mais de 5 milhões de habitantes?'),
+    mostra_pergunta(W),
+    nb_getval(resposta, Resposta),
+    (Resposta=2 ->
+        retractall(estado(_, _, _, _, _, _, _, yes, _, _));
+        retractall(estado(_, _, _, _, _, _, _, no, _, _))
     ),
-    forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
+    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
 
-    write("O seu estado faz divisa com mais de três estados?"),
-    read(Z),
-    ifThenElse(resposta(sim,Z),
-    retractall(estado(_, _, _, _, _, _, no, _, _, _)),
-    retractall(estado(_, _, _, _, _, _, yes, _, _, _))
+    nb_setval(pergunta, 'O seu estado faz divisa com mais de três estados?'),
+    mostra_pergunta(W),
+    nb_getval(resposta, Resposta),
+    (Resposta=2 ->
+        retractall(estado(_, _, _, _, _, _, yes, _, _, _));
+        retractall(estado(_, _, _, _, _, _, no, _, _, _))
     ),
-    forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
+    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
 
     anunciaResultado.
 
