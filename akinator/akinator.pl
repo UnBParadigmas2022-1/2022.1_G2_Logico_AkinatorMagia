@@ -69,9 +69,6 @@ perguntaRegiao(W) :-
 
 perguntaRegiao(W) :- anunciaResultado.
 
-ifThenElse(X, Y, _) :- X, !, Y.
-ifThenElse(_, _, Z) :- Z.
-
 anunciaResultado :-
     findall(1, estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), List),
     length(List, Count),
@@ -268,7 +265,7 @@ perguntasCentroOeste :-
     anunciaResultado.
 
 
-perguntasSudeste :- 
+perguntasSudeste :-
 % litoral, +5 mi de habitantes, divisa com +3 estados
     retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
     retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
@@ -305,40 +302,39 @@ perguntasSudeste :-
 
     anunciaResultado.
 
-perguntasSul :- write("É do sul!"),
+perguntasSul :-
 % densidadePopulacional entra 50 e 100, divisa com outras regioes, nome composto
 
-  retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
-  retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
-  retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
-  retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
-  forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
+    retractall(estado(_, nordeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, norte, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, sudeste, _, _, _, _, _, _, _, _)),
+    retractall(estado(_, centroOeste, _, _, _, _, _, _, _, _)),
+    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
 
-  write("A densidade populacional do seu estado está entre 50 e 100?"),
-  read(X),
-  ifThenElse(resposta(sim,X),
-  retractall(estado(_, _, _, _, _, no, _, _, _, _)),
-  retractall(estado(_, _, _, _, _, yes, _, _, _, _))
-  ),
-  forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
+    nb_setval(pergunta, 'A densidade populacional do seu estado está entre 50 e 100?'),
+    mostra_pergunta(W),
+    nb_getval(resposta, Resposta),
+    (Resposta=2 ->
+        retractall(estado(_, _, _, _, _, yes, _, _, _, _));
+        retractall(estado(_, _, _, _, _, no, _, _, _, _))
+    ),
+    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
 
-  write("O seu estado faz divisa com outras regiões?"),
-  read(Y),
-  ifThenElse(resposta(sim,Y),
-  retractall(estado(_, _, _, no, _, _, _, _, _, _)),
-  retractall(estado(_, _, _, yes, _, _, _, _, _, _))
-  ),
-  forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
+    nb_setval(pergunta, 'O seu estado faz divisa com outras regiões?'),
+    mostra_pergunta(W),
+    nb_getval(resposta, Resposta),
+    (Resposta=2 ->
+        retractall(estado(_, _, _, yes, _, _, _, _, _, _));
+        retractall(estado(_, _, _, no, _, _, _, _, _, _))
+    ),
+    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
 
-  write("O nome do seu estado é composto?"),
-  read(Z),
-  ifThenElse(resposta(sim,Z),
-  retractall(estado(_, _, _, _, _, _, _, _, _, no)),
-  retractall(estado(_, _, _, _, _, _, _, _, _, yes))
-  ),
-  forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
-  
-  anunciaResultado.
-
-resposta(nao, n).
-resposta(sim, s).
+    nb_setval(pergunta, 'O nome do seu estado é composto?'),
+    mostra_pergunta(W),
+    nb_getval(resposta, Resposta),
+    (Resposta=2 ->
+        retractall(estado(_, _, _, _, _, _, _, _, _, yes));
+        retractall(estado(_, _, _, _, _, _, _, _, _, no))
+    ),
+    %forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC))),
+    anunciaResultado.
