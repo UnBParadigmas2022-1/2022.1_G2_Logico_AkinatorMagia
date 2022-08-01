@@ -1,4 +1,3 @@
-Gabriela Pivetta, [01/08/22 19:44]
 :- initialization(iniciaTela).
 :- style_check(-singleton).
 :- use_module(library(lists)).
