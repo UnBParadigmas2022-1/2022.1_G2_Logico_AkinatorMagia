@@ -19,33 +19,19 @@
 | 180025601 | [Murilo Gomes de Souza](http://github.com/murilogds)                |
 
 ## Sobre 
-Projeto contendo dois jogos: um truque de mágica e um "adivinhador" de estados do Brasil, inspirado no jogo [Akinator](https://pt.akinator.com/). 
+O projeto Akinator/magia é um projeto com a finalidade de exercitar o conhecimento da equipe no paradigma logico, a aplicação criada fornece duas formas de se jogar a 1ª um jogo estilo akinator onde o programa vai tentar adivinhar um estado brasiliero em qu o jogador está pensando. Na 2ª forma nós temos um "truque de magica" no qual o programa adivinha a carta escolhida pelo jogador.
 
 ## Screenshots
-Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
 
-## Instalação 
-**Linguagens**: xxxxxx<br>
-**Tecnologias**: xxxxxx<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
-Insira um manual ou um script para auxiliar ainda mais.
-Gifs animados e outras ilustrações são bem-vindos!
+**Linguagens**: Prolog<br>
+**Tecnologias**: SWI-Prolog<br>
 
 ## Uso 
-Explique como usar seu projeto.
-Procure ilustrar em passos, com apoio de telas do software.
 
 ## Vídeo
-Adicione 1 ou mais vídeos com a execução do projeto.
-Procure: 
-(i) Introduzir o projeto;
-(ii) Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe;
-(iii) Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias, e
-(iV) Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
-OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
-TEMPO: +/- 15min
 
 ## Participações
+
 | Aluno | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | ----- | ------------ | ------------------------------------------------------------------------------ |
 | Felipe |  |  Excelente |
