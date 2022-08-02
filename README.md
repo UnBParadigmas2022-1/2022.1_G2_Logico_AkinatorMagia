@@ -29,6 +29,11 @@ O projeto Akinator/magia é um projeto com a finalidade de exercitar o conhecime
 > Truque de Mágica
 ![Truque de Mágica](./assets/truque_magica.png)
 
+> Akinator - Pergunta
+![Truque de Mágica](./assets/akinator_pergunta.png)
+
+> Akinator - Fim do jogo
+![Truque de Mágica](./assets/akinator_final.png)
 ## Instalação
 
 **Linguagens**: Prolog<br>
@@ -51,6 +56,7 @@ Para usar o projeto é simples! Depois que forem feitos os passos listados no t�
 
 ## Vídeo
 
+[Apresentação](https://unbbr-my.sharepoint.com/:v:/g/personal/180052845_aluno_unb_br/EYvfa3uoFUBKrMTIhqX9NgwBQlAZppOtFxou8oTPDRDYoQ?e=4r0wzV)
 ## Participações
 
 | Aluno | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
