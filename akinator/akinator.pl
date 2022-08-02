@@ -8,7 +8,7 @@ iniciaTela :- consult('akinator/base.pl'),
     send(W, size, size(900, 500)),
     send(W, background, '#7D97D9'),
     send(W, open),
-    perguntaRegiaoNorte(W)
+    perguntaRegiaoNorte(W),
     !.
 
 perguntaRegiaoNorte(W) :-
@@ -80,10 +80,10 @@ mostra_pergunta(W) :-
     send(W, clear),
     nb_getval(pergunta, Pergunta),
     new(T, text(Pergunta)),
-    new(F, font(screen, bold, 25)),
+    new(F, font(screen, bold, 20)),
     send(T, font(F)),
     send(T, colour('#D9CF68')),
-    send(W, gap, size(200, 70)),
+    send(W, gap, size(100, 50)),
     send(W, append, T),
     send(W, append, new(BTS, dialog_group(buttons, group))),
     send(BTS, append, new(B1, fixed_size_button('não', message(@prolog, handleResposta, W, 1, Pergunta))), below),
@@ -94,10 +94,6 @@ mostra_pergunta(W) :-
     !.
 
 handleResposta(W, Resposta, Pergunta) :-
-    write("Resposta: "),
-    write(Resposta), nl,
-    write("Pergunta: "),
-    write(Pergunta), nl,
     (Pergunta = 'Seu estado é da região Norte?' ->
        (Resposta = 2 -> estadoNorte(W) ; perguntaRegiaoNordeste(W))
     );
@@ -114,28 +110,28 @@ handleResposta(W, Resposta, Pergunta) :-
         (Resposta = 2 -> estadoSul(W) ; anunciaResultado(W))
     );
     (Pergunta = 'Seu estado tem acesso ao mar?' ->
-        (Resposta = 2 -> possuiMar(W, yes) ; possuiMar(W, no))
+        (Resposta = 2 -> possuiMar(W, no) ; possuiMar(W, yes))
     );
     (Pergunta = 'Seu estado tem mais de 5 milhões de habitantes?' ->
-        (Resposta = 2 -> possuiHabitantes(W, yes) ; possuiHabitantes(W, no))
+        (Resposta = 2 -> possuiHabitantes(W, no) ; possuiHabitantes(W, yes))
     );
     (Pergunta = 'A densidade populacional do seu estado é menor que 4?' ->
-        (Resposta = 2 -> possuiDensidade(W, yes) ; possuiDensidade(W, no))
+        (Resposta = 2 -> possuiDensidade(W, no) ; possuiDensidade(W, yes))
     );
     (Pergunta = 'O seu estado faz divisa com outras regiões?' ->
-        (Resposta = 2 -> possuiDivisaRegiao(W, yes) ; possuiDivisaRegiao(W, no))
+        (Resposta = 2 -> possuiDivisaRegiao(W, no) ; possuiDivisaRegiao(W, yes))
     );
     (Pergunta = 'O seu estado faz divisa com mais de três estados?' ->
-        (Resposta = 2 -> possuiDivisaEstado(W, yes) ; possuiDivisaEstado(W, no))
+        (Resposta = 2 -> possuiDivisaEstado(W, no) ; possuiDivisaEstado(W, yes))
     );
     (Pergunta = 'O índice de alfabetização do seu estado é menor que 85%?' ->
-        (Resposta = 2 -> possuiAlfabetizacao(W, yes) ; possuiAlfabetizacao(W, no))
+        (Resposta = 2 -> possuiAlfabetizacao(W, no) ; possuiAlfabetizacao(W, yes))
     );
     (Pergunta = 'A densidade populacional do seu estado está entre 50 e 100?' ->
-        (Resposta = 2 -> possuiDensidadePopulacional(W, yes) ; possuiDensidadePopulacional(W, no))
+        (Resposta = 2 -> possuiDensidadePopulacional(W, no) ; possuiDensidadePopulacional(W, yes))
     );
     (Pergunta = 'O nome do seu estado é composto?' ->
-        (Resposta = 2 -> possuiNome(W, yes) ; possuiNome(W, no))
+        (Resposta = 2 -> possuiNome(W, no) ; possuiNome(W, yes))
     );
     !.
 
@@ -220,8 +216,23 @@ possuiNome(W, Resposta) :-
     !.
 
 anunciaResultado(W) :-
-    findall(1, estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), List),
-    length(List, Count),
-    Count == 1,
-    forall(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), writeln(estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC)))
+    send(W, clear),
+    findall(N, estado(N,R,L,DOR,DP4,DP5e10,DE,MH,A,NC), List),
+    length(List, Count),  
+    (Count = 1 ->  
+        format(atom(S), 'Seu estado é: ~w!', List), new(SI, text(S));
+        new(SI, text('Esse estado não existe no Brasil! Tem certeza que respondeu as perguntas corretamente?'))
+    ),
+    new(TI, text('Fim do Jogo!')),
+	new(FI, font(screen, bold, 20)),
+	send(TI, font(FI)),
+    send(SI, font(FI)),
+    send(TI,colour('#D9CF68')),
+    send(SI,colour('#D9CF68')),
+    send(W, append(TI)),
+    send(W, append, SI, below),
+    send(W, gap, size(100, 50)),
+    send(W, append, new(B3, fixed_size_button('Sair', message(W, destroy))), below),
+    send(B3, size(size(250,35))),
+    send(W, layout),
     !.

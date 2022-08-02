@@ -30,6 +30,7 @@ estado('Paraná',sul,yes,yes,no,yes,no,yes,no,no).
 estado('Rio Grande do Sul',sul,yes,no,no,no,no,yes,no,yes).
 estado('Santa Catarina',sul,yes,no,no,yes,no,yes,no,yes).
 
+% dadosEstados(id, [região, habitantes, acessoAoMar, divisacomOutrasR, densidade, numeroDeDivisas, indiceAlfabetização, nome])
 dadosEstados(acre, [norte, 795145, false, false, 4.30, 2, 86.9, 'Acre']).
 dadosEstados(alagoas, [nordeste, 3327551, true, false, 108.61, 3, 80.6, 'Alagoas']).
 dadosEstados(amapa, [norte, 756500, true, false, 4.16, 1, 95, 'Amapa']).
