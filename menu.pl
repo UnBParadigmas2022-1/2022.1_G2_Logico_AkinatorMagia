@@ -27,11 +27,11 @@ menu:-  repeat,
 	send_list([B1,B2,B3], size(size(320,50))),
 	send(BTS, layout_dialog),
 	send(W, layout),
-    send(W, open),
+  	send(W, open),
 	!.
 
 option(0):- !.
 option(1):-
     consult(truque/magica), !.
-option(2):- write('Abrindo akinator...'), nl, !.
-option(_):- write('Não é uma opção válida'), nl, !.
+option(2):-
+	consult(akinator/akinator), !.
